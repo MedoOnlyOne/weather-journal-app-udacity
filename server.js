@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-projectData = {};
+let projectData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -26,13 +26,17 @@ app.listen(3000, () => console.log('server is running on port 3000'));
 
 // Routes
 app.get('/getProjectData', (req, res)=>{
+    // send the projectData back to the user
     console.log('Get req at /getProjectData');
     console.log(`Send `, projectData);
     res.send(projectData);
 });
 
 app.post('/saveProjectData', (req, res)=>{
+    // store the projectData
+
     console.log('Post req at /saveProjectData');
+    // Destruct the request body object into projectData
     projectData = {...req.body};
     console.log(`Received `, projectData);
     res.end();
